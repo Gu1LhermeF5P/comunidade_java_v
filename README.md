@@ -51,7 +51,6 @@ A API foi construída seguindo as boas práticas de arquitetura, utilizando Spri
 ## 🔗 Links dos Repositórios
 
 * **Repositório Frontend (React Native):** [LINK_REPOSITORIO_FRONTEND_GITHUB_CLASSROOM]
-* **Repositório Backend (Este Repositório):** (O link será o do próprio repositório onde este README está)
 
 ---
 
