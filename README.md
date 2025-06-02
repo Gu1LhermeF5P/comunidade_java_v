@@ -50,7 +50,7 @@ A API foi construída seguindo as boas práticas de arquitetura, utilizando Spri
 
 ## 🔗 Links dos Repositórios
 
-* **Repositório Frontend (React Native):** [LINK_REPOSITORIO_FRONTEND_GITHUB_CLASSROOM]
+* **Repositório Frontend (React Native):(https://github.com/Gu1LhermeF5P/comUnidade)
 
 ---
 
