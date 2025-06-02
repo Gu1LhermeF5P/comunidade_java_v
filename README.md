@@ -1,4 +1,4 @@
-#   ComUnidade - Global Solution FIAP 📱
+#   ComUnidade - Global Solution FIAP 
 ## 👥 Integrantes
 
 - **Nome:** Guilherme Francisco   
@@ -15,90 +15,124 @@
 
 [LINK_VIDEO_PITCH_3_MINUTOS]
 
+## 💡 Descrição da API Backend "ComUnidade"
+
+Esta API RESTful, desenvolvida com Java Spring Boot, serve como o backend para a aplicação "ComUnidade". Ela é responsável por gerir os dados centrais da aplicação, como os boletins de alerta e informação, e por fornecer a lógica de negócios e segurança necessárias.
+
+A API foi construída seguindo as boas práticas de arquitetura, utilizando Spring Data JPA para persistência em banco de dados Oracle SQL e Spring Security com JWT para autenticação e autorização.
+
+**Principais Funcionalidades da API:**
+
+* **Gestão de Boletins:** Endpoints CRUD (Create, Read, Update, Delete) para os boletins de alerta e informação.
+* **Autenticação de Utilizadores:** Endpoints para registo e login de utilizadores, com geração de tokens JWT para acesso seguro aos recursos protegidos.
+* **Paginação e Ordenação:** Suporte para paginação e ordenação nos endpoints de listagem.
+* **Filtros:** Capacidade de filtrar boletins por critérios como severidade ou título.
+* **Validação:** Uso de Bean Validation para garantir a integridade dos dados recebidos.
+* **Documentação:** Documentação interativa da API gerada com Swagger/OpenAPI.
+
 ---
 
-## 💡 Descrição da Solução "ComUnidade"
+## 🛠️ Tecnologias Utilizadas
 
-O "ComUnidade" é uma aplicação desenvolvida para mitigar os impactos de eventos extremos na população, facilitando a comunicação e o acesso a informações cruciais mesmo em cenários offline ou com conectividade limitada. A solução visa fortalecer a resiliência comunitária em momentos de crise.
-
-**✨ Principais Funcionalidades:**
-
-* **📢 Boletins de Alerta e Informação:** Permite a criação, visualização, atualização e exclusão de boletins informativos e alertas sobre a situação local (funcionalidade CRUD integrada com API backend).
-* **🗣️ Canais de Comunicação:** Oferece canais de comunicação fixos (ex: "Bombeiros - Relatar Emergência" 🚒, "Defesa Civil - Alertas" 🛡️) onde os utilizadores podem enviar informações ou receber comunicados. As mensagens são registadas localmente.
-* **🆘 SOS com Localização:** Uma funcionalidade de emergência que permite ao utilizador enviar um sinal de SOS, tentando obter e (simuladamente para a rede local) partilhar a sua geolocalização 📍. Inclui um botão para ligar diretamente para um número de emergência local 📞.
-* **🗺️ Mapa e Recursos Offline:** Permite ao utilizador visualizar um mapa de referência da sua área (que pode ser carregado da galeria do dispositivo 🖼️) e adicionar/visualizar pontos de interesse categorizados (abrigos 🏠, água 💧, perigos  위험, etc.), guardados localmente.
-* **🚀 Onboarding e Configurações:** Processo de introdução para novos utilizadores e uma tela de configurações ⚙️ para personalização básica.
-
-**🛠️ Tecnologias Utilizadas:**
-
-* **Frontend:** React Native (com Expo) ⚛️
-* **Backend:** API RESTful desenvolvida com Java Spring Boot ☕
-* **Banco de Dados:** Oracle SQL 🗃️ (conectado via Spring Data JPA)
-* **Autenticação:** JWT (JSON Web Tokens) 🔑 para proteger os endpoints da API.
-* **Documentação da API:** Swagger/OpenAPI 📖
-* **Outras bibliotecas relevantes:** React Navigation, Axios, AsyncStorage (frontend); Spring Security, JJWT (backend).
+* **Java 17**
+* **Spring Boot 3.2.x** (ou a versão que estiver a usar)
+    * Spring Web (MVC)
+    * Spring Data JPA
+    * Spring Security
+* **Maven** (para gestão de dependências e build)
+* **Oracle SQL** (como banco de dados relacional)
+* **JWT (JSON Web Tokens)** com a biblioteca `jjwt` para autenticação.
+* **Lombok** (para reduzir código boilerplate)
+* **SpringDoc OpenAPI / Swagger** (para documentação da API)
+* **HikariCP** (para pooling de conexões com o banco de dados)
 
 ---
 
 ## 🔗 Links dos Repositórios
 
 * **Repositório Frontend (React Native):** [LINK_REPOSITORIO_FRONTEND_GITHUB_CLASSROOM]
-* **Repositório Backend (Java Spring Boot):** [LINK_REPOSITORIO_BACKEND_GITHUB_CLASSROOM]
+* **Repositório Backend (Este Repositório):** (O link será o do próprio repositório onde este README está)
 
 ---
 
-## 📋 Instruções para Acesso e Testes
+## 📋 Instruções para Execução Local e Testes da API
 
-### Backend (API Java Spring Boot)
+### Pré-requisitos para Execução Local:
 
-1.  **Pré-requisitos:**
-    * A API deve estar em execução num ambiente local ou de deploy.
-    * Recomenda-se o uso do Postman ou Insomnia para testar os endpoints.
-2.  **Endpoints Principais (Ex: Base URL local: `http://localhost:8080`):**
-    * **Autenticação:**
-        * `POST /api/auth/register` (Para criar um novo utilizador)
-            * Corpo (JSON): `{ "username": "user", "email": "user@mail.com", "password": "password123", "roles": ["ROLE_USER"] }`
-        * `POST /api/auth/login` (Para obter um token JWT)
-            * Corpo (JSON): `{ "usernameOrEmail": "user", "password": "password123" }`
-            * Resposta: JSON com `accessToken`. Copie este token.
-    * **Boletins (Header `Authorization: Bearer SEU_TOKEN_JWT` necessário para POST, PUT, DELETE):**
-        * `POST /api/boletins` (Criar Boletim)
-            * Corpo (JSON): `{ "title": "Novo Alerta", "location": "Local X", "content": "Conteúdo do alerta...", "severity": "Alerta" }`
-        * `GET /api/boletins` (Listar Boletins - com paginação e filtros)
-        * `GET /api/boletins/{id}` (Buscar Boletim por ID)
-        * `PUT /api/boletins/{id}` (Atualizar Boletim)
-        * `DELETE /api/boletins/{id}` (Excluir Boletim)
-    * **Utilizadores de Teste (sugestão):**
-        * Admin: `admin` / `adminpass` (Roles: `ROLE_ADMIN`, `ROLE_USER`)
-        * Comum: `user` / `userpass` (Role: `ROLE_USER`)
+1.  Java JDK 17 (ou superior compatível) instalado.
+2.  Apache Maven instalado.
+3.  Acesso a uma instância de banco de dados Oracle SQL.
+4.  Configurar as credenciais do banco de dados no ficheiro `src/main/resources/application.properties`.
 
-### Frontend (Aplicação React Native "ComUnidade")
+### Executando a Aplicação Localmente:
 
-1.  **Pré-requisitos:**
-    * Node.js, npm/yarn, Expo CLI instalados.
-    * Aplicação Expo Go no dispositivo físico.
-    * API backend em execução e acessível (configure a `API_BASE_URL` no `src/services/bulletinService.js` do frontend).
-2.  **Executando Localmente:**
+1.  Clone este repositório:
     ```bash
-    git clone [LINK_REPOSITORIO_FRONTEND_GITHUB_CLASSROOM]
-    cd nome-da-pasta-frontend
-    npm install
-    npx expo start
+    git clone https://github.com/Gu1LhermeF5P/comunidade_java_v
+    cd comunidade-java 
     ```
-    Digitalize o QR Code com a aplicação Expo Go.
-3.  **Principais Funcionalidades a Testar (e Ícones a Observar ✨):**
-    * Processo de Onboarding (se ativo).
-    * Registo e Login de utilizador (se implementado no frontend).
-    * Navegação pelas abas: Início (🏠), Canais (🗣️), Boletins (📢), SOS (🆘), Mapa (🗺️).
-    * **Boletins:**
-        * Visualizar lista (ícones de severidade/tipo de alerta).
-        * Criar, ver detalhes, editar, excluir.
-    * **Canais de Comunicação:**
-        * Visualizar canais fixos (ícone de Bombeiros 🚒, Defesa Civil 🛡️).
-        * Enviar um "relatório" para um canal.
-    * **SOS:**
-        * Ativar SOS (ícone de alarme 🚨).
-        * Botão de ligação de emergência (ícone de telefone 📞).
-    * **Mapa e Recursos:**
-        * Selecionar imagem de mapa (ícone de imagem 🖼️).
-        * Adicionar/visualizar pontos com ícones de categoria (🏠, 💧, 🚧).
+2.  Configure o ficheiro `src/main/resources/application.properties` com os seus dados de conexão Oracle:
+    ```properties
+    spring.datasource.url=jdbc:oracle:thin:@SEU_HOST_ORACLE:PORTA:SID_OU_SERVICE_NAME
+    spring.datasource.username=SEU_USUARIO_ORACLE(usuario oracle no .txt da entrega)
+    spring.datasource.password=SUA_SENHA_ORACLE
+    jwt.secret=SEU_SEGREDO_JWT_FORTE_COM_PELO_MENOS_32_BYTES
+    ```
+3.  Compile e execute a aplicação usando Maven:
+    ```bash
+    mvn spring-boot:run
+    ```
+    Ou, se preferir construir o JAR primeiro:
+    ```bash
+    mvn clean package -DskipTests
+    java -jar target/comunidade-java-0.0.1-SNAPSHOT.jar 
+    ```
+    A API estará disponível em `http://localhost:8080`.
+
+### Testando os Endpoints (com Postman ou Insomnia)
+
+**URL Base Local:** `http://localhost:8080`
+Boletins**
+   *(Para os endpoints POST, PUT, DELETE, adicione o header: `Authorization: Bearer SEU_ACCESS_TOKEN`)*
+
+* **Criar Boletim:**
+    * `POST /api/boletins`
+    * Header: `Content-Type: application/json`, `Authorization: Bearer SEU_ACCESS_TOKEN`
+    * Corpo (JSON):
+        ```json
+        {
+          "title": "Alerta de Enchente no Bairro X",
+          "location": "Rua Y, próximo ao rio Z",
+          "content": "Nível do rio subindo rapidamente. Risco de enchente iminente.",
+          "severity": "Alerta"
+        }
+        ```
+    * Resposta Esperada: `201 Created` com os dados do boletim criado (incluindo `id` e `username` do criador).
+
+* **Listar Todos os Boletins:**
+    * `GET /api/boletins`
+    * (Opcional) Query Params: `?page=0&size=5&sort=timestamp,desc&severity=Alerta&title=Enchente`
+    * Resposta Esperada: `200 OK` com a página de boletins.
+
+* **Buscar Boletim por ID:**
+    * `GET /api/boletins/{id}` (substitua `{id}` por um ID válido)
+    * Resposta Esperada: `200 OK` com os dados do boletim, ou `404 Not Found`.
+
+* **Atualizar Boletim:**
+    * `PUT /api/boletins/{id}`
+    * Header: `Content-Type: application/json`, `Authorization: Bearer SEU_ACCESS_TOKEN`
+    * Corpo (JSON):
+        ```json
+        {
+          "title": "Alerta de Enchente ATUALIZADO",
+          "location": "Rua Y, próximo ao rio Z - Nível Estabilizado",
+          "content": "O nível do rio estabilizou, mas a área continua em observação.",
+          "severity": "Cuidado"
+        }
+        ```
+    * Resposta Esperada: `200 OK` com os dados atualizados, ou `404 Not Found`.
+
+* **Excluir Boletim:**
+    * `DELETE /api/boletins/{id}`
+    * Header: `Authorization: Bearer SEU_ACCESS_TOKEN`
+    * Resposta Esperada: `204 No Content` (se o utilizador tiver permissão, ex: `ROLE_ADMIN`), `403 Forbidden` (se não tiver permissão), ou `404 Not Found`.
