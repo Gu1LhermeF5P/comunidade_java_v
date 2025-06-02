@@ -9,7 +9,7 @@
   **RM:** 555287
   ## 📺 Link para o Vídeo de Demonstração no YouTube
 
-[LINK_VIDEO_YOUTUBE_10_MINUTOS]
+(https://www.youtube.com/watch?v=2EtoJaAlyH8)
 
 ## 🎤 Link para o Vídeo Pitch no YouTube (se aplicável)
 
