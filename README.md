@@ -1,4 +1,4 @@
-#   ComUnidade - Global Solution FIAP 📱
+#   ComUnidade - Global Solution FIAP 
 ## 👥 Integrantes
 
 - **Nome:** Guilherme Francisco   
@@ -68,13 +68,13 @@ A API foi construída seguindo as boas práticas de arquitetura, utilizando Spri
 
 1.  Clone este repositório:
     ```bash
-    git clone [LINK_DESTE_REPOSITORIO_BACKEND]
+    git clone https://github.com/Gu1LhermeF5P/comunidade_java_v
     cd comunidade-java 
     ```
 2.  Configure o ficheiro `src/main/resources/application.properties` com os seus dados de conexão Oracle:
     ```properties
     spring.datasource.url=jdbc:oracle:thin:@SEU_HOST_ORACLE:PORTA:SID_OU_SERVICE_NAME
-    spring.datasource.username=SEU_USUARIO_ORACLE
+    spring.datasource.username=SEU_USUARIO_ORACLE(usuario oracle no .txt da entrega)
     spring.datasource.password=SUA_SENHA_ORACLE
     jwt.secret=SEU_SEGREDO_JWT_FORTE_COM_PELO_MENOS_32_BYTES
     ```
@@ -92,3 +92,47 @@ A API foi construída seguindo as boas práticas de arquitetura, utilizando Spri
 ### Testando os Endpoints (com Postman ou Insomnia)
 
 **URL Base Local:** `http://localhost:8080`
+Boletins**
+   *(Para os endpoints POST, PUT, DELETE, adicione o header: `Authorization: Bearer SEU_ACCESS_TOKEN`)*
+
+* **Criar Boletim:**
+    * `POST /api/boletins`
+    * Header: `Content-Type: application/json`, `Authorization: Bearer SEU_ACCESS_TOKEN`
+    * Corpo (JSON):
+        ```json
+        {
+          "title": "Alerta de Enchente no Bairro X",
+          "location": "Rua Y, próximo ao rio Z",
+          "content": "Nível do rio subindo rapidamente. Risco de enchente iminente.",
+          "severity": "Alerta"
+        }
+        ```
+    * Resposta Esperada: `201 Created` com os dados do boletim criado (incluindo `id` e `username` do criador).
+
+* **Listar Todos os Boletins:**
+    * `GET /api/boletins`
+    * (Opcional) Query Params: `?page=0&size=5&sort=timestamp,desc&severity=Alerta&title=Enchente`
+    * Resposta Esperada: `200 OK` com a página de boletins.
+
+* **Buscar Boletim por ID:**
+    * `GET /api/boletins/{id}` (substitua `{id}` por um ID válido)
+    * Resposta Esperada: `200 OK` com os dados do boletim, ou `404 Not Found`.
+
+* **Atualizar Boletim:**
+    * `PUT /api/boletins/{id}`
+    * Header: `Content-Type: application/json`, `Authorization: Bearer SEU_ACCESS_TOKEN`
+    * Corpo (JSON):
+        ```json
+        {
+          "title": "Alerta de Enchente ATUALIZADO",
+          "location": "Rua Y, próximo ao rio Z - Nível Estabilizado",
+          "content": "O nível do rio estabilizou, mas a área continua em observação.",
+          "severity": "Cuidado"
+        }
+        ```
+    * Resposta Esperada: `200 OK` com os dados atualizados, ou `404 Not Found`.
+
+* **Excluir Boletim:**
+    * `DELETE /api/boletins/{id}`
+    * Header: `Authorization: Bearer SEU_ACCESS_TOKEN`
+    * Resposta Esperada: `204 No Content` (se o utilizador tiver permissão, ex: `ROLE_ADMIN`), `403 Forbidden` (se não tiver permissão), ou `404 Not Found`.
