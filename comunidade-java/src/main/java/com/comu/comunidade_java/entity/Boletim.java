@@ -11,6 +11,8 @@ import lombok.ToString;
 import lombok.EqualsAndHashCode; 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "tb_boletim")
 @Data
@@ -49,6 +51,7 @@ public class Boletim {
     @NotNull(message = "O utilizador criador do boletim é obrigatório")
     @ToString.Exclude 
     @EqualsAndHashCode.Exclude 
+    @JsonBackReference
     private User user; 
 
     @PrePersist

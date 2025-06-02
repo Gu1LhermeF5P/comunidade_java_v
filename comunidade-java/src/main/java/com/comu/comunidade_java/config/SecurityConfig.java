@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(prePostEnabled = true) 
 public class SecurityConfig {
 
-    @Autowired(required = false) // Torna opcional se você comentar/remover o filtro JWT para testes
+    @Autowired(required = false) 
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
@@ -30,12 +30,12 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll() 
-                // Se JWT está desativado para teste, permitir todas as operações de boletins:
+                
                 .requestMatchers("/api/boletins/**").permitAll() 
-                .anyRequest().permitAll() // Ou .authenticated() se quiser que o resto seja protegido
+                .anyRequest().permitAll() 
             );
         
-        // Adiciona o filtro JWT apenas se ele estiver presente (útil se você o comentar para testes)
+        
         if (jwtAuthenticationFilter != null) {
             http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         }

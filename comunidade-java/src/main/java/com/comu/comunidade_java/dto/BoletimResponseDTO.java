@@ -3,7 +3,7 @@ package com.comu.comunidade_java.dto;
 import lombok.Data;
 import java.time.LocalDateTime;
 
-@Data // O Lombok @Data deve gerar getters e setters
+@Data 
 public class BoletimResponseDTO {
     private Long id;
     private String username; 

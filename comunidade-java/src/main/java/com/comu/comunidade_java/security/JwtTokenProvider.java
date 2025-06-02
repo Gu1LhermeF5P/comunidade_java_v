@@ -29,12 +29,11 @@ public class JwtTokenProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-    // Para produção, este segredo DEVE ser forte e configurado externamente (ex: variável de ambiente).
-    // Mínimo de 32 bytes (256 bits) para HS256.
+
     @Value("${jwt.secret:FallbackSuperSecretoParaComUnidadeAppDeveSerLongoESeguro32BytesMinimo}")
     private String jwtSecretString; 
 
-    @Value("${jwt.expirationMs:86400000}") // 24 horas
+    @Value("${jwt.expirationMs:86400000}") 
     private int jwtExpirationMs;
 
     private SecretKey signingKey; 
@@ -43,17 +42,17 @@ public class JwtTokenProvider {
     @PostConstruct
     public void init() {
         byte[] keyBytes = jwtSecretString.getBytes(StandardCharsets.UTF_8);
-        // O algoritmo HS256 requer uma chave de pelo menos 256 bits (32 bytes).
+        
         if (keyBytes.length < 32) { 
             logger.warn("!!! AVISO DE SEGURANÇA: O 'jwt.secret' configurado é muito curto (< 32 bytes UTF-8) para o algoritmo HS256.");
             logger.warn("!!! A gerar uma chave aleatória FORTE para HS256 para USO EM DESENVOLVIMENTO APENAS.");
             logger.warn("!!! NÃO USE ESTA CONFIGURAÇÃO EM PRODUÇÃO SEM UM 'jwt.secret' FORTE E EXTERNALIZADO.");
-            this.signingKey = Jwts.SIG.HS256.key().build(); // Gera uma nova chave segura para HS256
+            this.signingKey = Jwts.SIG.HS256.key().build(); 
         } else {
-            this.signingKey = Keys.hmacShaKeyFor(keyBytes); // Cria a chave a partir do segredo fornecido
+            this.signingKey = Keys.hmacShaKeyFor(keyBytes); 
         }
 
-        // Pré-configura o parser com a chave de assinatura
+        
         this.jwtParser = Jwts.parser().verifyWith(this.signingKey).build();
     }
 
@@ -72,8 +71,7 @@ public class JwtTokenProvider {
         builder.claim("roles", roles);
         builder.issuedAt(now); 
         builder.expiration(expiryDate); 
-        // O método signWith(SecretKey) infere o algoritmo (HS256, HS384, ou HS512)
-        // com base no tamanho e tipo da SecretKey.
+       
         builder.signWith(this.signingKey); 
 
         return builder.compact();

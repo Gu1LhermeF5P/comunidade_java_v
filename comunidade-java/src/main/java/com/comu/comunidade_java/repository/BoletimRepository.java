@@ -1,6 +1,6 @@
-package com.comu.comunidade_java.repository; // Pacote ajustado
+package com.comu.comunidade_java.repository; 
 
-import com.comu.comunidade_java.entity.Boletim; // Import ajustado
+import com.comu.comunidade_java.entity.Boletim; 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

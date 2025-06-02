@@ -20,15 +20,15 @@ public class ComunidadeJavaApplication {
     @Bean
     CommandLineRunner run(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            // Utilizador Padrão "sistema" para operações não autenticadas (se JWT estiver desativado)
+            
             if (userRepository.findByUsername("sistema").isEmpty()) {
                 User systemUser = new User("sistema", "sistema@comunidade.com", passwordEncoder.encode("sistemaDefaultPass123"));
-                systemUser.setRoles(Set.of("ROLE_SYSTEM")); // Uma role especial, se necessário
+                systemUser.setRoles(Set.of("ROLE_SYSTEM")); 
                 userRepository.save(systemUser);
                 System.out.println(">>> Utilizador padrão 'sistema' criado.");
             }
 
-            // Utilizador Comum de Teste
+            
             if (userRepository.findByUsername("userfiap").isEmpty()) {
                 User testUser = new User(
                         "userfiap",
@@ -39,7 +39,7 @@ public class ComunidadeJavaApplication {
                 userRepository.save(testUser);
                 System.out.println(">>> Utilizador de teste 'userfiap' criado com senha 'senha123' e role ROLE_USER");
             }
-            // Utilizador Admin de Teste
+           
             if (userRepository.findByUsername("adminfiap").isEmpty()) {
                 User adminUser = new User(
                         "adminfiap",

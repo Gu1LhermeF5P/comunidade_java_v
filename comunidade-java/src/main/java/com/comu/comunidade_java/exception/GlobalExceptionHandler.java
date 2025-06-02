@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
         body.put("timestamp", new Date());
         body.put("status", HttpStatus.BAD_REQUEST.value());
         body.put("error", "Bad Request");
-        body.put("messages", errors); // Lista de mensagens de validação
+        body.put("messages", errors); 
         body.put("path", request.getDescription(false).replace("uri=", ""));
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }

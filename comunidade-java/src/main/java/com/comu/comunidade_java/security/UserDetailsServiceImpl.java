@@ -1,7 +1,7 @@
 package com.comu.comunidade_java.security;
 
-import com.comu.comunidade_java.entity.User; // Importe a sua entidade User
-import com.comu.comunidade_java.repository.UserRepository; // Importe o seu UserRepository
+import com.comu.comunidade_java.entity.User;
+import com.comu.comunidade_java.repository.UserRepository; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository; // Injete o seu UserRepository
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
-        // Permite login com username ou email
+       
         User user = userRepository.findByUsername(usernameOrEmail)
                 .orElseGet(() -> userRepository.findByEmail(usernameOrEmail)
                         .orElseThrow(() -> new UsernameNotFoundException("Utilizador não encontrado com username ou email: " + usernameOrEmail)));
@@ -31,12 +31,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .collect(Collectors.toSet());
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(), // Ou user.getEmail() se preferir
+                user.getUsername(), 
                 user.getPassword(),
                 user.isEnabled(),
-                true, // accountNonExpired
-                true, // credentialsNonExpired
-                true, // accountNonLocked
+                true, 
+                true, 
+                true, 
                 authorities);
     }
 }

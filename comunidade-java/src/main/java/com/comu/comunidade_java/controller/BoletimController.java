@@ -16,12 +16,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal; // Outra forma de obter o utilizador
+import java.security.Principal; 
 
 @RestController
 @RequestMapping("/api/boletins")
 @Tag(name = "Boletins", description = "API para gestão de Boletins")
-// @SecurityRequirement(name = "bearerAuth") // Comente se JWT estiver globalmente desativado para testes
+
 public class BoletimController {
 
     @Autowired
@@ -44,20 +44,20 @@ public class BoletimController {
 
     @Operation(summary = "Cria um novo boletim")
     @PostMapping
-    // @PreAuthorize("isAuthenticated()") // Comente se JWT estiver desativado para este endpoint
+    
     public ResponseEntity<BoletimResponseDTO> createBoletim(
             @Valid @RequestBody BoletimRequestDTO boletimRequestDTO,
-            Principal principal // Opcional: Spring injeta o principal se autenticado, senão é null
+            Principal principal 
     ) {
         String username = (principal != null) ? principal.getName() : null;
-        // Se principal for null, o serviço usará o utilizador "sistema"
+        
         BoletimResponseDTO createdBoletim = boletimService.create(boletimRequestDTO, username);
         return new ResponseEntity<>(createdBoletim, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Atualiza um boletim existente")
     @PutMapping("/{id}")
-    // @PreAuthorize("isAuthenticated()") // Comente se JWT estiver desativado
+    
     public ResponseEntity<BoletimResponseDTO> updateBoletim(
             @PathVariable Long id, 
             @Valid @RequestBody BoletimRequestDTO boletimRequestDTO,
@@ -69,7 +69,7 @@ public class BoletimController {
 
     @Operation(summary = "Deleta um boletim por ID")
     @DeleteMapping("/{id}")
-    // @PreAuthorize("hasRole('ADMIN')") // Comente se JWT estiver desativado ou para simplificar permissões
+    
     public ResponseEntity<Void> deleteBoletim(@PathVariable Long id, Principal principal) {
         String username = (principal != null) ? principal.getName() : null;
         boletimService.delete(id, username);
