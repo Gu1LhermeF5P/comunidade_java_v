@@ -9,7 +9,7 @@
   **RM:** 555287
   ## 📺 Link para o Vídeo de Demonstração no YouTube
 
-[LINK_VIDEO_YOUTUBE_10_MINUTOS]
+(https://www.youtube.com/watch?v=2EtoJaAlyH8)
 
 ## 🎤 Link para o Vídeo Pitch no YouTube (se aplicável)
 
@@ -50,8 +50,7 @@ A API foi construída seguindo as boas práticas de arquitetura, utilizando Spri
 
 ## 🔗 Links dos Repositórios
 
-* **Repositório Frontend (React Native):** [LINK_REPOSITORIO_FRONTEND_GITHUB_CLASSROOM]
-* **Repositório Backend (Este Repositório):** (O link será o do próprio repositório onde este README está)
+* **Repositório Frontend (React Native):(https://github.com/Gu1LhermeF5P/comUnidade)
 
 ---
 
