@@ -11,9 +11,9 @@
 
 (https://www.youtube.com/watch?v=2EtoJaAlyH8)
 
-## 🎤 Link para o Vídeo Pitch no YouTube (se aplicável)
+## 🎤 Link para o Vídeo Pitch no YouTube
 
-[LINK_VIDEO_PITCH_3_MINUTOS]
+(https://youtu.be/6OfL3rvwpCc)
 
 ## 💡 Descrição da API Backend "ComUnidade"
 
